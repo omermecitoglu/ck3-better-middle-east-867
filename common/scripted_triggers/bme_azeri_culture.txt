@@ -1,0 +1,95 @@
+﻿bme_province_culture_is_diverged_from_turkish = {
+	culture = {
+		NOT = { this = culture:turkish }
+		any_parent_culture = {
+			this = culture:turkish
+			count = 1
+		}
+	}
+}
+
+bme_did_azeris_spawn = {
+	OR = {
+		title:d_shirvan = {
+			any_de_jure_county = {
+				bme_province_culture_is_diverged_from_turkish = yes
+			}
+		}
+		title:d_azerbaijan = {
+			any_de_jure_county = {
+				bme_province_culture_is_diverged_from_turkish = yes
+			}
+		}
+	}
+}
+
+bme_azeris_can_spawn_here_safely = {
+	bme_num_same_realm_counties_in_duchy = bme_num_turkish_same_realm_counties_in_duchy
+}
+
+bme_culture_0001_valid_for_turkish_culture_trigger = {
+	tier = tier_county
+	exists = holder
+	NOT = { exists = var:had_turkish_county_conversion }
+	OR = {
+		duchy = title:d_shirvan
+		duchy = title:d_azerbaijan
+	}
+	NOR = {
+		this = title:c_urmiya
+		this = title:c_bailaqan
+	}
+	NOT = { culture = holder.culture }
+	culture = {
+		NOR = {
+			this = culture:turkish
+			any_parent_culture_or_above = {
+				this = culture:turkish
+			}
+		}
+		OR = {
+			has_cultural_pillar = heritage_iranian
+			has_cultural_pillar = heritage_arabic
+		}
+	}
+}
+
+bme_culture_0002_valid_for_turkish_culture_trigger = {
+	tier = tier_county
+	exists = holder
+	OR = {
+		duchy = title:d_shirvan
+		duchy = title:d_azerbaijan
+	}
+	NOR = {
+		this = title:c_urmiya
+		this = title:c_bailaqan
+	}
+	NOT = { exists = var:had_turkish_county_conversion }
+	NOT = { culture = holder.culture } # No conversion for counties who match their holder's culture
+	culture = {
+		NOR = {
+			this = culture:turkish
+			any_parent_culture_or_above = {
+				this = culture:turkish
+			}
+		}
+		OR = {
+			has_cultural_pillar = heritage_byzantine
+			has_cultural_pillar = heritage_iranian
+			has_cultural_pillar = heritage_arabic
+		}
+	}
+}
+
+bme_culture_0003_valid_for_azeri_culture_trigger = {
+	tier = tier_county
+	exists = holder
+	OR = {
+		duchy = title:d_shirvan
+		duchy = title:d_azerbaijan
+	}
+	NOT = { exists = var:had_azeri_county_conversion }
+	NOT = { culture = holder.culture } # No conversion for counties who match their holder's culture
+	culture = culture:turkish
+}

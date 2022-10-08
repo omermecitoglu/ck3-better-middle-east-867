@@ -1,0 +1,11 @@
+﻿bme_turkish_adventurer_modifier = {
+	icon = martial_positive
+	embarkation_cost_mult = -1
+	supply_duration = 2
+	min_combat_roll = 10
+}
+
+bme_reprieve_from_ta_modifier = {
+	icon = blood_positive
+	# Modifier effects listed in the description; stops SAs from targeting the character for the duration.
+}

@@ -1,0 +1,203 @@
+﻿namespace = bme_culture
+
+####################################################
+# Oghuz Turks spreads in Azerbaijan (foreign ruler)
+####################################################
+
+bme_culture.0001 = {
+	type = character_event
+	title = bme_culture.0001.t
+	desc = bme_culture.0001.desc
+	theme = culture_change
+	left_portrait = root
+	
+	trigger = {
+		NOT = { culture = culture:turkish }
+		any_held_title = {
+			bme_culture_0001_valid_for_turkish_culture_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 0
+		modifier = {
+			add = bme_azeri_spread_event_weight_multiplier
+		}
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = {
+				bme_culture_0001_valid_for_turkish_culture_trigger = yes
+			}
+			weight = { # Try to approximate organic spread
+				base = 1
+				modifier = {
+					duchy = {
+						prev = title_capital_county	
+					}
+					add = 4
+				}
+				modifier = {
+					any_neighboring_county = {
+						culture = culture:turkish
+					}
+					add = 4
+				}
+				modifier = {
+					culture = culture:kurdish
+					add = -4
+				}
+			}
+			save_scope_as = county_to_change
+			culture = {
+				save_scope_as = old_culture
+			}
+			set_variable = {
+				name = had_turkish_county_conversion
+				value = yes
+			}
+		}
+		culture:turkish = {
+			save_scope_as = turkish # For loc
+		}
+	}
+
+	option = {
+		name = bme_culture.0001.a
+		scope:county_to_change = {
+			set_county_culture = culture:turkish
+		}
+	}
+}
+
+####################################################
+# Oghuz Turks spreads in Azerbaijan (turkish ruler)
+####################################################
+
+bme_culture.0002 = {
+	type = character_event
+	title = bme_culture.0001.t
+	desc = bme_culture.0001.desc
+	theme = culture_change
+	left_portrait = root
+	
+	trigger = {
+		culture = culture:turkish
+		any_held_title = {
+			bme_culture_0002_valid_for_turkish_culture_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 0
+		modifier = {
+			add = bme_azeri_spread_event_weight_multiplier
+		}
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = {
+				bme_culture_0002_valid_for_turkish_culture_trigger = yes
+			}
+			weight = { # Try to approximate organic spread
+				base = 1
+				modifier = {
+					duchy = {
+						prev = title_capital_county	
+					}
+					add = 4
+				}
+				modifier = {
+					any_neighboring_county = {
+						culture = culture:turkish
+					}
+					add = 4
+				}
+				modifier = {
+					culture = culture:kurdish
+					add = -4
+				}
+			}
+			save_scope_as = county_to_change
+			culture = {
+				save_scope_as = old_culture
+			}
+			set_variable = {
+				name = had_turkish_county_conversion
+				value = yes
+			}
+		}
+		culture:turkish = {
+			save_scope_as = turkish # For loc
+		}
+	}
+
+	option = {
+		name = bme_culture.0002.a
+		scope:county_to_change = {
+			set_county_culture = culture:turkish
+		}
+	}
+}
+
+###############################
+# Convert Oghuz Turks to Azeri
+###############################
+
+bme_culture.0003 = {
+	type = character_event
+	title = bme_culture.0001.t
+	desc = bme_culture.0001.desc
+	theme = culture_change
+	left_portrait = root
+	
+	trigger = {
+		bme_did_azeris_spawn = yes
+		any_held_title = {
+			bme_culture_0003_valid_for_azeri_culture_trigger = yes
+		}
+	}
+
+	immediate = {
+		random_held_title = {
+			limit = { bme_culture_0003_valid_for_azeri_culture_trigger = yes }
+			save_scope_as = county_to_change
+			culture = {
+				save_scope_as = old_culture
+			}
+			set_variable = {
+				name = had_azeri_county_conversion
+				value = yes
+			}
+		}
+		title:d_shirvan = {
+			every_de_jure_county = {
+				limit = {
+					bme_province_culture_is_diverged_from_turkish = yes
+				}
+				culture = {
+					save_scope_as = turkish # this is actually Azeri. but I didn't want to add new localizations for this event
+				}
+			}
+		}
+		title:d_azerbaijan = {
+			every_de_jure_county = {
+				limit = {
+					bme_province_culture_is_diverged_from_turkish = yes
+				}
+				culture = {
+					save_scope_as = turkish # this is actually Azeri. but I didn't want to add new localizations for this event
+				}
+			}
+		}
+	}
+
+	option = {
+		name = bme_culture.0002.a
+		scope:county_to_change = {
+			set_county_culture = scope:turkish # actually Azeri
+		}
+	}
+}

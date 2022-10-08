@@ -1,0 +1,43 @@
+﻿clean_turkish_adventurer_effect = {
+	every_held_title = {
+		limit = { has_variable = temporary_title }
+		save_scope_as = destroyable_title
+		scope:attacker = { destroy_title = scope:destroyable_title }
+	}
+	remove_character_modifier = bme_turkish_adventurer_modifier
+}
+
+fp1_add_realm_size_appropriate_sa_reprieve_effect = {
+	# Depending on the sub realm size of $VICTIM$, we give them a scaling amount of time not to be hit by SA attacks.
+	## The smallest realms get a long reprieve.
+	if = {
+		limit = { sub_realm_size <= tiny_realm_size }
+		add_character_modifier = {
+			modifier = bme_reprieve_from_ta_modifier
+			years = 20
+		}
+	}
+	## Then a decent reprieve.
+	else_if = {
+		limit = { sub_realm_size <= minor_realm_size }
+		add_character_modifier = {
+			modifier = bme_reprieve_from_ta_modifier
+			years = 15
+		}
+	}
+	## Then a short reprieve.
+	else_if = {
+		limit = { sub_realm_size <= medium_realm_size }
+		add_character_modifier = {
+			modifier = bme_reprieve_from_ta_modifier
+			years = 10
+		}
+	}
+	## Then you're clearly too big and juicy a target for much reprieve at all.
+	else = {
+		add_character_modifier = {
+			modifier = bme_reprieve_from_ta_modifier
+			years = 5
+		}
+	}
+}

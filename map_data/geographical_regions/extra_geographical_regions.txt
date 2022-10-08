@@ -1,0 +1,20 @@
+﻿world_me_persia = { 
+	# Persia, minus duchies which already exist in world_middle_east
+	duchies = {
+		#Persia
+		d_isfahan d_kirman d_yazd d_rayy d_hamadan d_fars d_hormuz d_khuzestan  
+		#k_khorasan
+		d_nishapur d_merv d_ghur d_herat d_balkh d_nasa d_kohestan
+		#k_daylam
+		d_daylam d_tabaristan d_gurgan d_azerbaijan
+		#k_transoxiana
+		d_soghd d_badakhshan d_khuttal d_osrushana d_ferghana d_khorezm d_uzboy
+		#k_makran
+		d_jabal_kufs d_makran d_sistan
+		#k_kabulistan
+		d_kabul d_zabulistan
+		#k_khiva
+		#d_samarkand d_khiva d_dihistan
+		d_shirvan
+	}
+}

@@ -1,0 +1,75 @@
+﻿bme_valid_turkish_adventurer = {
+	is_available_ai_adult = yes
+	is_alive = yes
+	is_ruler = no
+	culture = culture:turkish
+	faith = faith:ashari
+	OR = {
+		any_heir_title = { count = 0 }
+		AND = {
+			save_temporary_scope_as = potential
+			any_heir_title = {
+				place_in_line_of_succession = {
+					target = scope:potential
+					value >= 3
+				}
+			}
+		}
+	}
+}
+
+# bme_duchy_is_not_fractured = {
+# 	save_temporary_scope_as = this_county
+# 	duchy = {
+# 		any_de_jure_county = {
+# 			holder = {
+# 				top_liege = scope:this_county.holder.top_liege
+# 			}
+# 			count = all
+# 		}
+# 	}
+# }
+
+bme_duchy_is_occupied_by_any_fellow_turkish_ruler = {
+	duchy = {
+		any_de_jure_county = {
+			holder = {
+				culture = {
+					OR = {
+						has_cultural_pillar = heritage_turkic
+						has_cultural_pillar = language_turkic
+					}
+				}
+			}
+		}
+	}
+}
+
+bme_ruler_is_attacked_by_any_fellow_turkish_nomad = {
+	any_character_war = {
+		using_cb = bme_turkish_adventurer_conquest
+	}
+}
+
+bme_duchy_is_attacked_by_any_fellow_turkish_nomad = {
+	duchy = {
+		any_de_jure_county = {
+			holder.top_liege = {
+				bme_ruler_is_attacked_by_any_fellow_turkish_nomad = yes
+			}
+		}
+	}
+}
+
+bme_valid_migration_target_for_turkish_nomads = {
+	# OR = {
+	# 	duchy = title:d_shirvan
+	# 	duchy = title:d_azerbaijan
+	# 	bme_duchy_is_not_fractured = yes
+	# }
+	bme_duchy_is_occupied_by_any_fellow_turkish_ruler = no
+	bme_duchy_is_attacked_by_any_fellow_turkish_nomad = no
+	holder.top_liege = {
+		NOT = { has_character_modifier = bme_reprieve_from_ta_modifier }
+	}
+}

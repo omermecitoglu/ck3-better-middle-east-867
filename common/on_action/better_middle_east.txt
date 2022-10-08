@@ -1,0 +1,34 @@
+﻿on_game_start = {
+	on_actions = {
+		bme_adventure_events_oa
+	}
+}
+
+three_year_playable_pulse = {
+	on_actions = {
+		bme_culture_events_oa
+	}
+}
+
+bme_adventure_events_oa = {
+	trigger = {
+		culture:turkish = {
+			NOT = { has_cultural_era_or_later = culture_era_early_medieval }
+		}
+	}
+	events = {
+		bme_turkish_adventurers.0001
+	}
+}
+
+bme_culture_events_oa = {
+	trigger = {
+		NOT = { has_game_rule = turkish_adventurers_off }
+	}
+	random_events = {
+		800 = 0
+		1 = bme_culture.0001
+		3 = bme_culture.0002
+		600 = bme_culture.0003
+	}
+}

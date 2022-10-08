@@ -1,0 +1,8 @@
+﻿bme_turkish_adventurers = {
+	default = turkish_adventurers_frequent
+	turkish_adventurers_rare = {}
+	turkish_adventurers_occasional = {}
+	turkish_adventurers_frequent = {}
+	turkish_adventurers_apocalyptic = {}
+	turkish_adventurers_off = {}
+}

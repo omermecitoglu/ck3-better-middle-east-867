@@ -1,0 +1,27 @@
+﻿l_english:
+  turkish_nomads_title_name: "Turkish Nomads"
+  turkish_adventurer_event_troops: "Turkish Nomads"
+
+  bme_turkish_adventurer_modifier: "Nomad Exile"
+  bme_turkish_adventurer_modifier_desc: "This character fled Steppes with an army of rogues and adventurers, seeking to carve out a realm elsewhere."
+
+  bme_reprieve_from_ta_modifier: "Reprieve from Turkish Adventurers"
+  bme_reprieve_from_ta_modifier_desc: "Somehow, this character has won a measure of respite from the relentless normad hordes.\n$EFFECT_LIST_BULLET$ Will not be attacked by landless Turkish Adventurers"
+
+  bme_culture.0001.t: "Spread of [turkish.GetNameNoTooltip] Culture"
+  bme_culture.0001.desc: "Oghuz Turkic tribes started moving across the Iranian Plateau into the Caucasus and Anatolia.\n\nNow it is clear that the people in the [county_to_change.GetName] no longer see themselves as [old_culture.GetName], but as native [turkish.GetCollectiveNoun]!"
+  bme_culture.0001.a: "An interesting development..."
+
+  bme_culture.0002.a: "Wonderful!"
+
+  rule_bme_turkish_adventurers: "Turkish Adventurers"
+  setting_turkish_adventurers_rare: "Rare"
+  setting_turkish_adventurers_rare_desc: "Turkish adventurers will try to target Persia every 15 years."
+  setting_turkish_adventurers_occasional: "Occasional"
+  setting_turkish_adventurers_occasional_desc: "Turkish adventurers will try to target Persia every 10 years."
+  setting_turkish_adventurers_frequent: "Frequent"
+  setting_turkish_adventurers_frequent_desc: "Turkish adventurers will try to target Persia every 5 years."
+  setting_turkish_adventurers_apocalyptic: "Apocalyptic"
+  setting_turkish_adventurers_apocalyptic_desc: "Turkish adventurers will try to target Persia every year, AI characters do not require specific traits to launch [varangian_adventures|E]."
+  setting_turkish_adventurers_off: "Off"
+  setting_turkish_adventurers_off_desc: "Turkish adventurers will never try to target Persia."

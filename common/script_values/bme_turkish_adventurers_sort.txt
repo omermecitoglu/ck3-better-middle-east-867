@@ -1,0 +1,292 @@
+﻿bme_preferred_turkish_adventurer = {
+	value = 0
+
+	# Weight up preferred adventurers.
+	if = {
+		limit = { has_character_flag = prioritised_scandinavian_adventurer }
+		add = 1000
+	}
+	#Add martial score directly
+	add = martial
+	#Add prowess score directly
+	add = prowess
+	#Add reduced diplomacy score
+	add = {
+		value = diplomacy
+		multiply = 0.5
+	}
+	#Add reduced intrigue score
+	add = {
+		value = intrigue
+		multiply = 0.5
+	}
+	#Weight up for prestige level
+	add = {
+		value = prestige_level
+		multiply = 10
+	}
+	#+++Rough Terrain Expert
+	if = {
+		limit = { has_trait = rough_terrain_expert }
+		add = 15
+	}
+	#+++Ambitious
+	if = {
+		limit = { has_trait = ambitious }
+		add = 15
+	}
+	#+++Viking
+	if = {
+		limit = { has_trait = viking }
+		add = 15
+	}
+	#++Strategist
+	if = {
+		limit = { has_trait = strategist }
+		add = 10
+	}
+	#++Brave
+	if = {
+		limit = { has_trait = brave }
+		add = 10
+	}
+	#++Stubborn
+	if = {
+		limit = { has_trait = stubborn }
+		add = 10
+	}
+	#++Varangian
+	if = {
+		limit = { has_trait = varangian }
+		add = 10
+	}
+	#+Any blademaster
+	if = {
+		limit = { has_trait = lifestyle_blademaster }
+		add = 5
+	}
+	#+Diligent
+	if = {
+		limit = { has_trait = diligent }
+		add = 5
+	}
+	#+Wrathful
+	if = {
+		limit = { has_trait = wrathful }
+		add = 5
+	}
+	#+Impatient
+	if = {
+		limit = { has_trait = impatient }
+		add = 5
+	}
+	#+Arrogant
+	if = {
+		limit = { has_trait = arrogant }
+		add = 5
+	}
+	#+Vengeful
+	if = {
+		limit = { has_trait = vengeful }
+		add = 5
+	}
+	#+Berserker
+	if = {
+		limit = { has_trait = berserker }
+		add = 5
+	}
+	#+Shieldmaiden
+	if = {
+		limit = { has_trait = shieldmaiden }
+		add = 5
+	}
+	#-Forgiving
+	if = {
+		limit = { has_trait = forgiving }
+		add = -5
+	}
+	#-Humble
+	if = {
+		limit = { has_trait = humble }
+		add = -5
+	}
+	#-Patient
+	if = {
+		limit = { has_trait = patient }
+		add = -5
+	}
+	#-Calm
+	if = {
+		limit = { has_trait = calm }
+		add = -5
+	}
+	#-Lazy
+	if = {
+		limit = { has_trait = lazy }
+		add = -5
+	}
+	#--Craven
+	if = {
+		limit = { has_trait = craven }
+		add = -10
+	}
+	#---Content
+	if = {
+		limit = { has_trait = content }
+		add = -15
+	}
+	#Weight down heavily for pacifist faith.
+	if = {
+		limit = {
+			faith = { has_doctrine_parameter = pacifist_opinion_active }
+		}
+		add = -30
+	}
+	#Weight up substantially if they have a (potential) relationship with a player.
+	if = {
+		limit = {
+			OR = {
+				any_relation = { type = soulmate this = { is_ai = no } }
+				any_relation = { type = best_friend this = { is_ai = no } }
+				any_relation = { type = nemesis this = { is_ai = no } }
+			}
+		}
+		add = 300
+	}
+	else_if = {
+		limit = {
+			OR = {
+				any_relation = { type = lover this = { is_ai = no } }
+				any_relation = { type = friend this = { is_ai = no } }
+				any_relation = { type = rival this = { is_ai = no } }
+			}
+		}
+		add = 200
+	}
+	else_if = {
+		limit = {
+			OR = {
+				any_relation = { type = potential_lover this = { is_ai = no } }
+				any_relation = { type = potential_friend this = { is_ai = no } }
+				any_relation = { type = potential_rival this = { is_ai = no } }
+			}
+		}
+		add = 100
+	}
+}
+
+bme_preferred_adventure_location = {
+	value = development_level
+	
+	if = { # to create Azeri culture
+		limit = {
+			OR = {
+				duchy = title:d_shirvan
+				duchy = title:d_azerbaijan
+			}
+			bme_did_azeris_spawn = no
+			bme_azeris_can_spawn_here_safely = yes
+		}
+		add = 100000
+	}
+
+	if = {
+		limit = {
+			holder.top_liege = {
+				OR = {
+					has_title = title:d_sunni
+					has_title = title:d_shiite
+					has_title = title:e_arabia
+					AND = { # Let's give a chance to Persians
+						highest_held_title_tier >= tier_kingdom
+						OR = {
+							culture = culture:persian
+							culture = { # persian divergents are also ok
+								AND = {
+									has_cultural_pillar = heritage_iranian
+									any_parent_culture_or_above = {
+										this = culture:persian
+									}
+									NOT = {
+										any_parent_culture_or_above = {
+											has_cultural_pillar = heritage_arabic
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		add = -150000
+	}
+
+	if = { # home
+		limit = {
+			culture = {
+				OR = {
+					has_cultural_pillar = heritage_turkic
+					has_cultural_pillar = language_turkic
+				}
+			}
+		}
+		add = 40000
+	}
+
+	if = { # to create Turko-Persian culture
+		limit = {
+			culture = culture:persian
+		}
+		add = 30000
+	}
+
+	if = { # to create Turko-Afghan culture
+		limit = {
+			culture = culture:afghan
+		}
+		add = 20000
+	}
+
+	save_temporary_scope_as = this_county
+	duchy = { # to pick a better duchy
+		every_de_jure_county = {
+			limit = { # is in the same realm
+				holder.top_liege = scope:this_county.holder.top_liege
+			}
+			add = 1000
+
+			title_province = { # Terrain matters, horses can't fight on mountains
+				if = {
+					limit = {
+						OR = {
+							terrain = steppe
+							terrain = plains
+							terrain = drylands
+						}
+					}
+					add = 25 # good terrain
+				}
+				if = {
+					limit = {
+						OR = {
+							terrain = hills
+							terrain = jungle
+						}
+					}
+					add = -10 # bad terrain
+				}
+				if = {
+					limit = {
+						OR = {
+							terrain = wetlands
+							terrain = mountains
+							terrain = desert_mountains
+						}
+					}
+					add = -50 # awful terrain
+				}
+			}
+		}
+	}
+}
