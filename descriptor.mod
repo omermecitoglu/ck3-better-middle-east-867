@@ -4,5 +4,5 @@ tags={
 	"Alternative History"
 }
 name="Better Middle East 867"
-supported_version="1.7.*"
+supported_version="1.8.*"
 remote_file_id="2872631370"
