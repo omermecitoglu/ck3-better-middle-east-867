@@ -1,7 +1,7 @@
 ﻿l_spanish:
   turkish_nomads_title_name: "Nómadas Turquicos"
   turkish_adventurer_event_troops: "Nómadas Turquicos"
-  bme_turkish_adventurer_modifier: "Exiliado Turquico"
+  bme_turkish_adventurer_modifier: "Nómada Exiliado"
   bme_turkish_adventurer_modifier_desc: "Este personaje huyó de la Estepa con un ejército de pícaros y aventureros, buscando construir un reino en otros lugares."
   bme_reprieve_from_ta_modifier: "Recuperar de los aventureros turcos"
   bme_reprieve_from_ta_modifier_desc: "De alguna manera este personaje ha derrotado a los nomadas turcos.\n\n$EFFECT_LIST_BULLET$ No sera atacado por nomadas turcos"
