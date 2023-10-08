@@ -2,7 +2,7 @@
 
 #	Startup event, delaying the initial cycle.
 bme_turkish_adventurers.0001 = {
-	type = empty
+	scope = none
 	hidden = yes
 
 	trigger = {
@@ -18,7 +18,7 @@ bme_turkish_adventurers.0001 = {
 }
 
 bme_turkish_adventurers.0002 = {
-	type = empty
+	scope = none
 	hidden = yes
 
 	immediate = {
